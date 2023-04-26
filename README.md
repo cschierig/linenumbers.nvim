@@ -1,5 +1,6 @@
 # linenumbers.nvim
 
+Linenumbers.nvim is a simple plugin which automatically switches between relative/hybrid and absolute linenumbers.
 
 ## Installation
 
@@ -9,12 +10,11 @@ and proceed by following the instructions in the [configuration](#Configuration)
 ### Dependencies
 
 - Neovim >= 0.8.0
-- [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter/).
 
 ### Packer.nvim
 ```lua
 use {
-  'CozyPenguin/twins.nvim',
+  'cschierig/linenumbers.nvim',
   requires = { 'nvim-treesitter/nvim-treesitter' },
   event = 'BufEnter',
   config = function()
@@ -26,7 +26,7 @@ use {
 ### Lazy.nvim
 ```lua
 {
-  'CozyPenguin/twins.nvim',
+  'cschierig/linenumbers.nvim',
   dependencies = { 'nvim-treesitter/nvim-treesitter' },
   event = 'BufEnter',
   config = true,
@@ -35,40 +35,17 @@ use {
 
 ## Configuration
 
-> **Note** Twins doesn't have proper error handling yet, so errors in the configuration may result in unhelpful stacktraces.
-
 The configuration is a table which is passed as the first argument to the `setup()` function.
 It has the following structure:
 ```lua
 {
-  pairs = {
-    -- name = { 'left', 'right' }
-    parens = { '(', ')' },
-    curly = { '{', '}' },
-    square = { '[', ']' },
-    dquotes = { '"' } -- optional syntax if the left and the right tokens are the same
-  },
-  languages = {
-    -- pairs which are used for all languages
-    ['*'] = {
-      -- list of pairs
-      'parens'
-    },
-    c = {
-      -- additional pairs used by c
-      'curly',
-      'square'
-    },
-    c_sharp = 'c', -- define c_sharp as an alias for c, making both languages use the same pairs
-    markdown = {
-      { '_', '_' } -- pairs can also be specified in the language configuration
-    },
-  }
+  -- if false, relative linenumbers should are used instead of hybrid ones
+  hybrid = true
 }
 ```
 
-The default configuration can be at the beginning of [this file](./lua/twins/init.lua).
+The default configuration can be found at the beginning of [this file](./lua/linenumbers/init.lua).
 
-## Similar (better) plugins
+## Similar plugins
 
-- [auto-pairs](https://github.com/jiangmiao/auto-pairs)
+- [numbers.vim](https://github.com/myusuf3/numbers.vim)
