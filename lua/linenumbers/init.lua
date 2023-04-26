@@ -1,6 +1,12 @@
 local vim = vim
 local M = {}
 
+local default_config = {
+  hybrid = true,
+}
+
+local config = {}
+
 local group = vim.api.nvim_create_augroup('Linenumbers', { clear = true })
 
 local function set_absolute()
@@ -37,6 +43,7 @@ local function setup_autocommands()
 end
 
 function M.setup(cfg)
+  config = vim.tbl_deep_extend('force', default_config, cfg)
   vim.opt.number = true
   vim.wo.relativenumber = true
   setup_autocommands()
