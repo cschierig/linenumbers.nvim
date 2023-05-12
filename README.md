@@ -1,6 +1,6 @@
 # linenumbers.nvim
 
-Linenumbers.nvim is a simple plugin which automatically switches between relative/hybrid and absolute linenumbers.
+Linenumbers.nvim is a simple plugin which automatically switches between relative/hybrid and absolute linenumbers based on the current editing mode.
 
 ## Installation
 
@@ -15,7 +15,6 @@ and proceed by following the instructions in the [configuration](#Configuration)
 ```lua
 use {
   'cschierig/linenumbers.nvim',
-  requires = { 'nvim-treesitter/nvim-treesitter' },
   event = 'BufEnter',
   config = function()
     require('twins').setup()
@@ -27,7 +26,6 @@ use {
 ```lua
 {
   'cschierig/linenumbers.nvim',
-  dependencies = { 'nvim-treesitter/nvim-treesitter' },
   event = 'BufEnter',
   config = true,
 }
