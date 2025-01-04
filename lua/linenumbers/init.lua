@@ -11,13 +11,15 @@ local config = {}
 local group = vim.api.nvim_create_augroup('Linenumbers', { clear = true })
 
 local function set_absolute()
-  if config.disabled_buftypes[vim.bo.buftype] ~= nil then
+  if config.disabled_buftypes[vim.bo.buftype] == nil then
+    vim.opt.number = true
     vim.wo.relativenumber = false
   end
 end
 
 local function set_relative()
-  if config.disabled_buftypes[vim.bo.buftype] ~= nil then
+  if config.disabled_buftypes[vim.bo.buftype] == nil then
+    vim.opt.number = config.hybrid
     vim.wo.relativenumber = true
   end
 end
@@ -49,8 +51,7 @@ end
 
 function M.setup(cfg)
   config = vim.tbl_deep_extend('force', default_config, cfg)
-  vim.opt.number = config.hybrid
-  vim.wo.relativenumber = true
+  set_relative()
   setup_autocommands()
 end
 return M
