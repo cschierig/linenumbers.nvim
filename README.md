@@ -1,6 +1,6 @@
 # linenumbers.nvim
 
-Linenumbers.nvim is a simple plugin which automatically switches between relative/hybrid and absolute linenumbers based on the current editing mode.
+Linenumbers.nvim is a simple plugin which automatically switches between relative/hybrid and absolute line numbers based on the current editing mode.
 
 ## Installation
 
@@ -37,8 +37,11 @@ The configuration is a table which is passed as the first argument to the `setup
 It has the following structure:
 ```lua
 {
-  -- if false, relative linenumbers should are used instead of hybrid ones
+  -- if false, relative line numbers are used instead of hybrid ones
   hybrid = true
+  -- set buftypes (:h buftype) for which the plugin is disabled.
+  -- This prevents it from enabling file numbers where not desired, e.g. on a dashboard
+  disabled_buftypes = { 'nofile', 'terminal' },
 }
 ```
 
